@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" >
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:fragment="head">
         <title>TechShop</title>
         <meta charset="UTF-8"/>
@@ -19,10 +19,11 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav" sec:authorize='hasRole("ROLE_VENDEDOR")'> <!-- SOLO ACCEDE EL VENDEDOR-->
+                        <ul class="navbar-nav" sec:authorize='hasRole("ROLE_VENDEDOR")'>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>                           
-                            <li class="nav-item dropdown" sec:authorize='hasRole("ROLE_ADMIN")'>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
+                              
+                            <li class="nav-item dropdown" sec:authorize='hasRole("ROLE_USER")'>
                                 <a class="nav-link dropdown-toggle" 
                                    data-bs-toggle="dropdown" 
                                    href="#" 
@@ -31,6 +32,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
                                     <li><a class="dropdown-item"  th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/carrito/listado}">[[#{plantilla.carrito}]]</a></li>   
                                 </ul>
                             </li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
@@ -47,11 +49,13 @@
                         <ul class="navbar-nav">
                             <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link"
-                                    th:href="@{/login}">
+                                   th:href="@{/login}">
                                     <i class="fas fa-sign-in-alt"></i>
                                 </a> 
                             </li>
                         </ul>
+
+
                     </div>
                 </div>
             </nav>
